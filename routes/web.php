@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MasterController;
+use App\Http\Controllers\DailyTransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+Route::get('/master-data', [MasterController::class, 'index']);
+Route::get('/daily-transaction', [DailyTransactionController::class, 'index']);
