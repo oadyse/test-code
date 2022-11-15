@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_rek');
             $table->BigInteger('target');
-            $table->date('masa_awal');
-            $table->date('masa_akhir');
+            $table->integer('bulan_berlaku');
+            $table->integer('tahun_berlaku');
             $table->timestamps();
             $table->foreign('id_rek')->references('id')->on('rekening')->onDelete('cascade')->onUpdate('cascade');
         });
