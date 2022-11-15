@@ -16,7 +16,8 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="datatable-1" class="table data-table table-striped table-bordered">
+                                <table id="datatable-1"
+                                    class="table data-table table-striped table-bordered text-center">
                                     <thead>
                                         <tr>
                                             <th width="5%">No</th>
@@ -27,7 +28,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        <?php
+                                            $no = 1;
+                                            foreach ($data as $master) {
+                                        ?>
+                                        <tr>
+                                            <td>{{ $no }}</td>
+                                            <td>{{ $master->rekening->kode_rek }}</td>
+                                            <td>{{ $master->rekening->nama_rek }}</td>
+                                            <td>{{ 'Rp ' . number_format($master->target, 0, ',', '.') }}</td>
+                                            <td></td>
+                                        </tr>
+                                        <?php 
+                                            $no += 1;
+                                            } 
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

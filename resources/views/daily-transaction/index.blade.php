@@ -16,7 +16,8 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="datatable-1" class="table data-table table-striped table-bordered">
+                                <table id="datatable-1"
+                                    class="table data-table table-striped table-bordered text-center">
                                     <thead>
                                         <tr>
                                             <th width="5%">No</th>
@@ -28,7 +29,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        <?php
+                                            $no = 1;
+                                            foreach ($data as $value) {
+                                        ?>
+                                        <tr>
+                                            <td>{{ $no }}</td>
+                                            <td>{{ $value->rekening->kode_rek }}</td>
+                                            <td>{{ $value->rekening->nama_rek }}</td>
+                                            <td>{{ $value->via_bayar }}</td>
+                                            <td>{{ date('d M Y', strtotime($value->tgl_setor)) }}</td>
+                                            <td>{{ 'Rp ' . number_format($value->pajak->jumlah_pajak, 0, ',', '.') }}
+                                            </td>
+                                        </tr>
+                                        <?php 
+                                            $no += 1;
+                                            } 
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
