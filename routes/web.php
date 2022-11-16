@@ -19,4 +19,11 @@ Route::get('/', function () {
     return view('index');
 });
 Route::get('/master-data', [MasterController::class, 'index']);
+Route::post('/master-data/create', [MasterController::class, 'addNew']);
+Route::post('/master-data/update/{id}', [MasterController::class, 'processUpdate']);
+Route::get('/master-data/delete/{id}', [MasterController::class, 'delete']);
+
 Route::get('/daily-transaction', [DailyTransactionController::class, 'index']);
+Route::post('/daily-transaction/create', [DailyTransactionController::class, 'addNew']);
+Route::post('/daily-transaction/update/{id}', [DailyTransactionController::class, 'processUpdate']);
+Route::get('/daily-transaction/delete/{id}', [DailyTransactionController::class, 'delete']);

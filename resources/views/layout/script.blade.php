@@ -31,3 +31,6 @@
 
 <!-- app JavaScript -->
 <script src="{{ asset('/assets/js/app.js') }}"></script>
+
+{{-- Sweat Alert --}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
