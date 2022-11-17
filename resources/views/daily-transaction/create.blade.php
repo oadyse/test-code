@@ -27,7 +27,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-row mb-3">
+                    {{-- <div class="form-row mb-3">
                         <div class="col-3 m-auto">
                             <label for="validationTooltip02">Nama Rekening</label>
                         </div>
@@ -35,7 +35,7 @@
                             <input type="text" class="form-control" id="validationTooltip02" onchange="autofill()"
                                 disabled>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-row mb-3">
                         <div class="col-3 m-auto">
                             <label for="validationTooltip03">Jumlah Bayar</label>

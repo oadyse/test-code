@@ -26,7 +26,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-row mb-3">
+                    {{-- <div class="form-row mb-3">
                         <div class="col-3 m-auto">
                             <label>Nama Rekening</label>
                         </div>
@@ -44,7 +44,7 @@
                                 Please Add the Date!
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-row mb-3">
                         <div class="col-3 m-auto">
                             <label for="sel1">Bulan Berlaku</label>
