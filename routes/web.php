@@ -22,6 +22,7 @@ Route::get('/master-data', [MasterController::class, 'index']);
 Route::post('/master-data/create', [MasterController::class, 'addNew']);
 Route::post('/master-data/update/{id}', [MasterController::class, 'processUpdate']);
 Route::get('/master-data/delete/{id}', [MasterController::class, 'delete']);
+Route::get('/master-data/records', [MasterController::class, 'records'])->name('master-data/records');
 
 Route::get('/daily-transaction', [DailyTransactionController::class, 'index']);
 Route::post('/daily-transaction/create', [DailyTransactionController::class, 'addNew']);

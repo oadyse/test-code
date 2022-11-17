@@ -15,8 +15,8 @@
                         <div class="col-3 m-auto">
                             <label for="sel1">Kode Rekening</label>
                         </div>
-                        <div class="col-9 mb-0">
-                            <select name="id_rek" class="form-control choicesjs mb-0" id="sel1" required>
+                        <div class="col-9 mb-0" id="sel1">
+                            <select name="id_rek" class="form-control choicesjs mb-0" id="idRek" required>
                                 @foreach ($rek as $code)
                                     <option value="{{ $code->id }}">{{ $code->kode_rek }}</option>
                                 @endforeach
@@ -28,11 +28,10 @@
                     </div>
                     <div class="form-row mb-3">
                         <div class="col-3 m-auto">
-                            <label for="validationTooltip02">Nama Rekening</label>
+                            <label>Nama Rekening</label>
                         </div>
                         <div class="col-9">
-                            <input type="text" class="form-control" id="validationTooltip02" onchange="autofill()"
-                                disabled>
+                            <input type="text" class="form-control" id="nama_rek">
                         </div>
                     </div>
                     <div class="form-row mb-3">
@@ -85,9 +84,20 @@
 </div>
 
 {{-- <script>
-    function autofill(){
-        $.ajax {
-            url: 
-        }
-    }
+    $('#idRek').change(function() {
+        var id = $(this).val();
+        var url = '{{ route('autofill', ':id') }}';
+        url = url.replace(':id', id);
+
+        $.ajax({
+            url: url,
+            type: 'get',
+            dataType: 'json',
+            success: function(response) {
+                if (response != null) {
+                    $('#nama_rek').val(response.nama_rek);
+                }
+            }
+        });
+    });
 </script> --}}

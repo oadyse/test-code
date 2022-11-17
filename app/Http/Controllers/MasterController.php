@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DataTarget;
 use App\Models\Rekening;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class MasterController extends Controller
 {
@@ -31,6 +32,12 @@ class MasterController extends Controller
             return redirect()->back()->withInput()->withErrors("Terjadi kesalahan");
         }
     }
+
+    // public function autofill($id = 0)
+    // {
+    //     $data = Rekening::where('id_rek', $id)->first();
+    //     return response()->json($data);
+    // }
 
     public function processUpdate(Request $request, $id)
     {
@@ -60,6 +67,32 @@ class MasterController extends Controller
             }
         } catch (\Exception $e) {
             abort(404);
+        }
+    }
+
+    public function records(Request $request)
+    {
+        if ($request->ajax()) {
+
+            if ($request->input('start_date') && $request->input('end_date')) {
+
+                $start_date = Carbon::parse($request->input('start_date'));
+                $end_date = Carbon::parse($request->input('end_date'));
+
+                if ($end_date->greaterThan($start_date)) {
+                    $masters = DataTarget::whereBetween('created_at', [$start_date, $end_date])->get();
+                } else {
+                    $masters = DataTarget::latest()->get();
+                }
+            } else {
+                $masters = DataTarget::latest()->get();
+            }
+
+            return response()->json([
+                'masters' => $masters
+            ]);
+        } else {
+            abort(403);
         }
     }
 }

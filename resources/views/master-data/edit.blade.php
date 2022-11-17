@@ -58,9 +58,8 @@
                         </div>
                         <div class="col-9">
                             <select class="form-control" id="sel1" name="bulan_berlaku" required>
-                                <option selected disabled value="">Choose Month</option>
                                 @for ($a = 1; $a <= 12; $a++)
-                                    @if ($master->bulan_berlaku == $a)
+                                    @if ($a == $master->bulan_berlaku)
                                         <option value="{{ $master->bulan_berlaku }}">
                                             {{ date('F', mktime(0, 0, 0, $master->bulan_berlaku, 10)) }}
                                         </option>

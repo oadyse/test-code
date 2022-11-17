@@ -17,11 +17,56 @@
                                 data-target="#create">
                                 Add New
                             </button>
-
                             {{-- Modal Create --}}
                             @include('master-data.create')
+
+                            {{-- <a class="iq-icons-list text-dark" href="" title="Export">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="w-6 h-6">
+                                    <path fill-rule="evenodd"
+                                        d="M15.75 2.25H21a.75.75 0 01.75.75v5.25a.75.75 0 01-1.5 0V4.81L8.03 17.03a.75.75 0 01-1.06-1.06L19.19 3.75h-3.44a.75.75 0 010-1.5zm-10.5 4.5a1.5 1.5 0 00-1.5 1.5v10.5a1.5 1.5 0 001.5 1.5h10.5a1.5 1.5 0 001.5-1.5V10.5a.75.75 0 011.5 0v8.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V8.25a3 3 0 013-3h8.25a.75.75 0 010 1.5H5.25z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </a> --}}
                         </div>
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-info text-light px-2" id="basic-addon1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                    class="w-6 h-6" width="20px" height="20px">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" id="start_date"
+                                            placeholder="Start Date" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text bg-info text-light px-2" id="basic-addon1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6" width="20px"
+                                                height="20px">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+                                            </svg>
+                                        </span>
+                                        <input type="text" class="form-control" id="end_date" placeholder="End Date"
+                                            readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 my-2 mr-0">
+                                    <button id="filter" class="btn btn-outline-info btn-sm">Filter</button>
+                                    <button id="reset" class="btn btn-outline-warning btn-sm">Reset</button>
+                                </div>
+                            </div>
+
                             <div class="table-responsive">
                                 <table id="datatable-1"
                                     class="table data-table table-striped table-bordered text-center">
@@ -35,7 +80,7 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="records">
                                         <?php
                                             $no = 1;
                                             foreach ($data as $master) {
@@ -56,14 +101,6 @@
                                             ?>
                                             <td>{{ $start }} <b>sd</b> {{ $end }}</td>
                                             <td>
-                                                <a class="iq-icons-list text-dark" href="" title="Export">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                        fill="currentColor" class="w-6 h-6">
-                                                        <path fill-rule="evenodd"
-                                                            d="M15.75 2.25H21a.75.75 0 01.75.75v5.25a.75.75 0 01-1.5 0V4.81L8.03 17.03a.75.75 0 01-1.06-1.06L19.19 3.75h-3.44a.75.75 0 010-1.5zm-10.5 4.5a1.5 1.5 0 00-1.5 1.5v10.5a1.5 1.5 0 001.5 1.5h10.5a1.5 1.5 0 001.5-1.5V10.5a.75.75 0 011.5 0v8.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V8.25a3 3 0 013-3h8.25a.75.75 0 010 1.5H5.25z"
-                                                            clip-rule="evenodd" />
-                                                    </svg>
-                                                </a>
                                                 <a class="iq-icons-list text-left" href="" title="Edit"
                                                     data-toggle="modal" data-target="#edit{{ $id }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -109,50 +146,108 @@
 <!-- Backend Bundle JavaScript -->
 @include('layout.script')
 
-<!-- Add alert -->
-@if (session('successAdd'))
-    <script>
-        swal({
-            icon: 'success',
-            title: "Add Success!",
-            text: "{{ session('successAdd') }}",
-            button: false,
-            timer: 3500
-        })
-    </script>
-@elseif (session('successUpdate'))
-    <script>
-        swal({
-            icon: "success",
-            title: "Update Success!",
-            text: "{{ session('successUpdate') }}",
-            button: false,
-            timer: 3500
-        })
-    </script>
-@elseif (session('delete'))
-    <script>
-        swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover it!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal("{{ session('delete') }}", {
-                        icon: "success",
-                        button: false,
-                        timer: 3500
-                    });
-                } else {
-                    swal("Your data is safe!");
-                }
-            });
-    </script>
-@endif
-<!-- /Alert -->
+
+<script>
+    $(function() {
+        $("#start_date").datepicker({
+            "dateFormat": "yy-mm-dd"
+        });
+        $("#end_date").datepicker({
+            "dateFormat": "yy-mm-dd"
+        });
+    });
+
+    // Fetch records
+    function fetch(start_date, end_date) {
+        $.ajax({
+            url: "{{ route('master-data/records') }}",
+            type: "GEt",
+            data: {
+                start_date: start_date,
+                end_date: end_date
+            },
+            dataType: "json",
+            success: function(data) {
+                // Datatables
+                var i = 1;
+                $('#records').DataTable({
+                    "data": data.masters,
+                    // buttons
+                    "dom": "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    "buttons": [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+                    // responsive
+                    "responsive": true,
+                    "columns": [{
+                            "data": "no",
+                            "render": function(data, type, row, meta) {
+                                return i++;
+                            }
+                        },
+                        {
+                            "data": "kode_rek",
+                            "render": function(data, type, row, meta) {
+                                return `${}`;
+                            }
+                        },
+                        {
+                            "data": "nama_rek",
+                            "render": function(data, type, row, meta) {
+                                return ``;
+                            }
+                        },
+                        {
+                            "data": "target",
+                            "render": function(data, type, row, meta) {
+                                return `${row.standard}th Standard`;
+                            }
+                        },
+                        {
+                            "data": "percentage",
+                            "render": function(data, type, row, meta) {
+                                return `${row.percentage}%`;
+                            }
+                        },
+                        {
+                            "data": "created_at",
+                            "render": function(data, type, row, meta) {
+                                return moment(row.created_at).format('DD-MM-YYYY');
+                            }
+                        }
+                    ]
+                });
+            }
+        });
+    }
+
+    fetch();
+
+    // Filter
+    $(document).on("click", "#filter", function(e) {
+        e.preventDefault();
+        var start_date = $("#start_date").val();
+        var end_date = $("#end_date").val();
+        if (start_date == "" || end_date == "") {
+            alert("Both date required");
+        } else {
+            $('#records').DataTable().destroy();
+            fetch(start_date, end_date);
+        }
+    });
+
+    // Reset
+    $(document).on("click", "#reset", function(e) {
+        e.preventDefault();
+        $("#start_date").val(''); // empty value
+        $("#end_date").val('');
+        $('#records').DataTable().destroy();
+        fetch();
+    });
+</script>
+
 </body>
 
 </html>
